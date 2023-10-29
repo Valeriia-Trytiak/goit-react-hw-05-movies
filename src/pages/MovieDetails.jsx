@@ -1,4 +1,4 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ColorRing } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
@@ -11,6 +11,8 @@ const [moviesDetails, setMoviesDetails] = useState([]);
 const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState(false);
 const { movieId } = useParams();
+const location = useLocation();
+const backLink = location.state?.from ?? '/';
 
 useEffect(() => {
 if (!movieId) return;
@@ -36,6 +38,8 @@ fechMovieDetails();
 
   return(
     <main>
+      
+      <Link to={backLink}>To back</Link>;
       <DetailsOneMovie data={moviesDetails} />
    
   <ul>

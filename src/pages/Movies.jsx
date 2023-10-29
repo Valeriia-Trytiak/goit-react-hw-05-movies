@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { ColorRing } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
 import { SearchForm } from "../components/SearchForm/SearchForm";
@@ -9,15 +10,10 @@ import { fechServisSearchMovie } from "API";
 
 export const Movies = () => {
 const [searchMovies, setSearchMovies] = useState([]); 
-const [searchValue, setSearchValue]= useState("");
+const [searchParams, setSearchParams] = useSearchParams();
+const searchValue = searchParams.get("query") || "";
 const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState(false);
-
-// Записую до стану значення пошуку, скидаю поточну сторінку
-const uppdateSearchForm = (searchMovie)=> {
-  setSearchValue(searchMovie);
-  setSearchMovies([]);
-};
 
 // Запит на бек за фільмами по коючовому слову
 useEffect(()=> {
@@ -48,9 +44,13 @@ useEffect(()=> {
   fechMovieBySearchValue();
 }, [searchValue]);
 
+const updateSearchParams = (value) => {
+  setSearchParams({ query: value });
+};
+
     return (
       <main>
-      <SearchForm onSubmit={uppdateSearchForm} />
+      <SearchForm onSubmit={updateSearchParams} />
       {searchMovies.length > 0 && <MoviesList movies = {searchMovies} /> }
 
 {isLoading && <ContainerLoader>

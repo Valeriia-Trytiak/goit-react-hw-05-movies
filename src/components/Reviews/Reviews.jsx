@@ -21,7 +21,11 @@ export const Reviews = ()=> {
             setError(false);
             const reviewsById = await fechServisMovieReviews(movieId);
               toast.success("Movies found successfully!");
-              setMovieReviews(reviewsById.results);
+              if (reviewsById.results && reviewsById.results.length > 0) {
+                setMovieReviews(reviewsById.results);
+            } else {
+                setMovieReviews([]);
+            }
           }
           catch (error) {
             setError(true);
@@ -37,12 +41,17 @@ export const Reviews = ()=> {
     return(
     <div>
             <ul>
-            <li>
-                <img />
-                <span></span>
-                <span>Character:</span>
-            </li>
-        </ul>
+                {movieReviews.length > 0 ? (
+                    movieReviews.map((review) => (
+                        <li key={review.id}>
+                            <p>{review.author}</p>
+                            <p>{review.content}</p>
+                        </li>
+                    ))
+                ) : (
+                    <p>We don't have any reviews for this movie.</p>
+                )}
+            </ul>
         {isLoading && <ContainerLoader>
         <ColorRing
         visible={true}

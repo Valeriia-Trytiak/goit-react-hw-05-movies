@@ -11,6 +11,7 @@ export const Cast = ()=> {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
     const { movieId } = useParams();
+    const defaultImg = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
         
         useEffect(() => {
         if (!movieId) return;
@@ -21,7 +22,8 @@ export const Cast = ()=> {
             setError(false);
             const creditsById = await fechServisMovieCredits(movieId);
               toast.success("Movies found successfully!");
-              setMovieCredits(creditsById.cast);
+              const limitedCredits = creditsById.cast.slice(0, 15);
+             setMovieCredits(limitedCredits);
           }
           catch (error) {
             setError(true);
@@ -36,12 +38,14 @@ export const Cast = ()=> {
 
     return(
     <div>
-            <ul>
-            <li>
-                <img />
-                <span></span>
-                <span>Character:</span>
-            </li>
+        <ul>
+        {movieCredits.map((actor) => (
+        <li key={actor.cast_id}>
+        <img src={actor.profile_path ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`: defaultImg} alt={actor.name} width={150} />
+       <p>{actor.name}</p>
+       <p>Character: {actor.character}</p>
+        </li>
+        ))}
         </ul>
         {isLoading && <ContainerLoader>
         <ColorRing
