@@ -13,3 +13,18 @@ export const fechServisSearchMovie = async searchValue => {
   const response = await axios.get(`/search/movie?query=${searchValue}`);
   return response.data;
 };
+
+export const fechServisMovieDetails = async movieId => {
+  const response = await axios.get(`/movie/${movieId}`);
+  return response.data;
+};
+
+export const fechServisMovieCredits = async movieId => {
+  const response = await axios.get(`/movie/${movieId}/credits`);
+  return response.data;
+};
+
+export const fechServisMovieReviews = async movieId => {
+  const response = await axios.get(`/movie/${movieId}/reviews`);
+  return response.data;
+};

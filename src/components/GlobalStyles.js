@@ -21,7 +21,7 @@ html {
 
 img {
   display: block;
-  width: 100%;
+  /* width: 100%; */
 }
 
 ul {

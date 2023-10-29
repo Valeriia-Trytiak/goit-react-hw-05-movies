@@ -2,14 +2,15 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ColorRing } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
+import { fechServisMovieDetails } from "API";
 import { ContainerLoader } from "components/ContainerLoader/ContainerLoader.styled";
+import { DetailsOneMovie } from "components/DetailsOneMovie/DetailsOneMovie";
 
 export const MovieDetails = () => {
-  const [moviesDetails, setMoviesDetails] = useState([]); 
-const [searchValue, setSearchValue]= useState("");
+const [moviesDetails, setMoviesDetails] = useState([]); 
 const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState(false);
-  const { movieId } = useParams();
+const { movieId } = useParams();
 
 useEffect(() => {
 if (!movieId) return;
@@ -17,12 +18,10 @@ if (!movieId) return;
 async function fechMovieDetails () {
   try {
     setIsLoading(true);
-    // setError(false);
-    // // const searchMovie = await fechServisMovieDetails(movieId);
-    //   toast.success("Movies found successfully!");
-    //   setMoviesDetails(searchMovie.results);
-   
-
+    setError(false);
+    const MovieById = await fechServisMovieDetails(movieId);
+      toast.success("Movies found successfully!");
+      setMoviesDetails(MovieById);
   }
   catch (error) {
     setError(true);
@@ -36,16 +35,9 @@ fechMovieDetails();
 
 
   return(
-    <div>
-      <div>
-      <img />
-      <h2></h2>
-      <span></span>
-      <h3>Overview</h3>
-      <p></p>
-      <h3>Genres</h3>
-      <p></p>
-      </div>
+    <main>
+      <DetailsOneMovie data={moviesDetails} />
+   
   <ul>
         <li>
           <Link to="cast">Cast</Link>
@@ -67,6 +59,6 @@ colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
 
 {error && <span>Whoops... Error! Please, reload this page!</span>}
 <Toaster  position="top-right" />
-  </div>
+  </main>
   ) 
 };
