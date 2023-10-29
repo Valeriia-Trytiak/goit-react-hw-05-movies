@@ -7,8 +7,10 @@ axios.defaults.params = {
   language: 'en-US',
 };
 
-export const fechServisMovies = async () => {
-  const response = await axios.get('/trending/movie/day');
+export const fechServisMovies = async controller => {
+  const response = await axios.get('/trending/movie/day', {
+    signal: controller.signal,
+  });
   return response.data;
 };
 
