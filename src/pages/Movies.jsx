@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ColorRing } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
+
 import { SearchForm } from "../components/SearchForm/SearchForm";
 import { MoviesList } from "../components/MoviesList/MoviesList";
 import { ContainerLoader } from "components/ContainerLoader/ContainerLoader.styled";
@@ -11,11 +12,10 @@ import { fechServisSearchMovie } from "API";
 export const Movies = () => {
 const [searchMovies, setSearchMovies] = useState([]); 
 const [searchParams, setSearchParams] = useSearchParams();
-const searchValue = searchParams.get("query") || "";
 const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState(false);
+const searchValue = searchParams.get("query") || "";
 
-// Запит на бек за фільмами по коючовому слову
 useEffect(()=> {
   if (searchValue === "") {
     return
