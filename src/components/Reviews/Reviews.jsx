@@ -5,6 +5,12 @@ import toast, { Toaster } from 'react-hot-toast';
 
 import { fechServisMovieReviews } from 'API';
 import { ContainerLoader } from 'components/ContainerLoader/ContainerLoader.styled';
+import {
+  ReviewsContainer,
+  NoReviewsMessage,
+  AuthorName,
+  ReviewContent,
+} from './Reviews.styled';
 
 export const Reviews = () => {
   const [movieReviews, setMovieReviews] = useState([]);
@@ -36,17 +42,19 @@ export const Reviews = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <ReviewsContainer>
       <ul>
         {movieReviews.length > 0 ? (
           movieReviews.map(review => (
             <li key={review.id}>
-              <p>{review.author}</p>
-              <p>{review.content}</p>
+              <AuthorName>{review.author}</AuthorName>
+              <ReviewContent>{review.content}</ReviewContent>
             </li>
           ))
         ) : (
-          <p>We don't have any reviews for this movie.</p>
+          <NoReviewsMessage>
+            We don't have any reviews for this movie.
+          </NoReviewsMessage>
         )}
       </ul>
       {isLoading && (
@@ -63,6 +71,6 @@ export const Reviews = () => {
 
       {error && <span>Whoops... Error! Please, reload this page!</span>}
       <Toaster position="top-right" />
-    </div>
+    </ReviewsContainer>
   );
 };

@@ -34,6 +34,7 @@ export const UserScore = styled.span`
   font-size: 18px;
   margin-top: ${p => p.theme.spacing(2)};
   display: block;
+  color: ${p => p.theme.colors.accent};
 `;
 
 export const OverviewTitle = styled.h3`

@@ -5,6 +5,12 @@ import toast, { Toaster } from 'react-hot-toast';
 
 import { fechServisMovieCredits } from 'API';
 import { ContainerLoader } from 'components/ContainerLoader/ContainerLoader.styled';
+import {
+  ActorImage,
+  CastContainer,
+  ActorName,
+  ActorCharacter,
+} from './Cast.styled';
 
 export const Cast = () => {
   const [movieCredits, setMovieCredits] = useState([]);
@@ -23,7 +29,7 @@ export const Cast = () => {
         setError(false);
         const creditsById = await fechServisMovieCredits(movieId);
         toast.success('Movies found successfully!');
-        const limitedCredits = creditsById.cast.slice(0, 15);
+        const limitedCredits = creditsById.cast.slice(0, 16);
         setMovieCredits(limitedCredits);
       } catch (error) {
         setError(true);
@@ -35,11 +41,11 @@ export const Cast = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <CastContainer>
       <ul>
         {movieCredits.map(actor => (
           <li key={actor.cast_id}>
-            <img
+            <ActorImage
               src={
                 actor.profile_path
                   ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
@@ -48,8 +54,8 @@ export const Cast = () => {
               alt={actor.name}
               width={150}
             />
-            <p>{actor.name}</p>
-            <p>Character: {actor.character}</p>
+            <ActorName>{actor.name}</ActorName>
+            <ActorCharacter>Character: {actor.character}</ActorCharacter>
           </li>
         ))}
       </ul>
@@ -67,6 +73,6 @@ export const Cast = () => {
 
       {error && <span>Whoops... Error! Please, reload this page!</span>}
       <Toaster position="top-right" />
-    </div>
+    </CastContainer>
   );
 };

@@ -72,7 +72,7 @@ export const SearchIcon = styled(TbCameraSearch)`
   top: 10px;
   left: 10px;
   font-size: 25px;
-  color: ${p => p.theme.colors.grey};
+  color: ${p => p.theme.colors.textColor};
   opacity: 0.6;
 
   &:hover,
