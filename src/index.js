@@ -9,7 +9,7 @@ const theme = {
   colors: {
     accent: '#7ba7ab',
     buttonAccent: '#1b7e87',
-    grey: '#9e9c9c',
+    grey: '#f9f9f9',
     error: '#dc143c',
     bgInput: '#f9f0da',
     white: '#fff',

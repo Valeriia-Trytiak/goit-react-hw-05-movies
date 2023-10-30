@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom";
-import { Container, Header, Link } from "./SharedHeader.styled";
+import { Outlet } from 'react-router-dom';
+import { Container, Header, Link } from './SharedHeader.styled';
 
 export const SharedHeader = () => {
   return (

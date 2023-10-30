@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 export const NotFound = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export const NotFound = () => {
 
     const countdownTimer = setTimeout(() => {
       clearInterval(timer);
-      navigate("/");
+      navigate('/');
     }, 5000);
 
     return () => {
@@ -21,13 +21,14 @@ export const NotFound = () => {
     };
   }, [navigate]);
 
-    return (
-      <main style={{ textAlign: "center" }}>
-        <b style={{ fontSize: 64 }}>404</b>
-        <p>Sorry, we couldn't find that page :( </p> 
-        <p>You will return to the Home page after {secondsRemaining}{" "}
-        {secondsRemaining === 1 ? "second" : "seconds"}</p>
-      </main>
-    );
-  };
-  
+  return (
+    <main style={{ textAlign: 'center' }}>
+      <b style={{ fontSize: 64 }}>404</b>
+      <p>Sorry, we couldn't find that page :( </p>
+      <p>
+        You will return to the Home page after {secondsRemaining}{' '}
+        {secondsRemaining === 1 ? 'second' : 'seconds'}
+      </p>
+    </main>
+  );
+};
