@@ -1,5 +1,5 @@
 import { Outlet, useParams, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ColorRing } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
 import { TbCircleArrowLeft } from 'react-icons/tb';
@@ -19,8 +19,8 @@ export const MovieDetails = () => {
   const [error, setError] = useState(false);
   const { movieId } = useParams();
   const location = useLocation();
-  const backLink = location.state?.from ?? '/';
-
+  // const backLink = location.state?.from ?? '/';
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
   useEffect(() => {
     if (!movieId) return;
 
@@ -42,7 +42,7 @@ export const MovieDetails = () => {
 
   return (
     <main>
-      <BackLink to={backLink}>
+      <BackLink to={backLinkLocationRef.current}>
         {' '}
         <TbCircleArrowLeft />
         To back
