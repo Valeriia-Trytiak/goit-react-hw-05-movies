@@ -43,4 +43,5 @@ export const MoviesListContainer = styled.ul`
   flex-wrap: wrap;
   justify-content: space-around;
   gap: ${p => p.theme.spacing(8)};
+  padding-top: ${p => p.theme.spacing(8)};
 `;
