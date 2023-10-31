@@ -5,7 +5,7 @@ import { MoviesList } from 'components/MoviesList/MoviesList';
 import { fechServisMovies } from '../API';
 import { ContainerLoader } from 'components/ContainerLoader/ContainerLoader.styled';
 
-export const Home = () => {
+const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -46,3 +46,5 @@ export const Home = () => {
     </main>
   );
 };
+
+export default Home;

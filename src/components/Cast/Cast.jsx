@@ -12,7 +12,7 @@ import {
   ActorCharacter,
 } from './Cast.styled';
 
-export const Cast = () => {
+const Cast = () => {
   const [movieCredits, setMovieCredits] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -76,3 +76,5 @@ export const Cast = () => {
     </CastContainer>
   );
 };
+
+export default Cast;

@@ -12,7 +12,7 @@ import {
   ReviewContent,
 } from './Reviews.styled';
 
-export const Reviews = () => {
+const Reviews = () => {
   const [movieReviews, setMovieReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -74,3 +74,5 @@ export const Reviews = () => {
     </ReviewsContainer>
   );
 };
+
+export default Reviews;

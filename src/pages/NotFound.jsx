@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-export const NotFound = () => {
+const NotFound = () => {
   const navigate = useNavigate();
   const [secondsRemaining, setSecondsRemaining] = useState(5);
 
@@ -32,3 +32,5 @@ export const NotFound = () => {
     </main>
   );
 };
+
+export default NotFound;

@@ -13,7 +13,7 @@ import {
   BackLink,
 } from 'components/MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [moviesDetails, setMoviesDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -59,7 +59,9 @@ export const MovieDetails = () => {
           </InfoListItem>
         </ul>
       </DescWrapper>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
       {isLoading && (
         <ContainerLoader>
           <ColorRing
@@ -76,3 +78,5 @@ export const MovieDetails = () => {
     </main>
   );
 };
+
+export default MovieDetails;

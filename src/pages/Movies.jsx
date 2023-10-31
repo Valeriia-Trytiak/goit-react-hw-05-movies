@@ -8,7 +8,7 @@ import { MoviesList } from '../components/MoviesList/MoviesList';
 import { ContainerLoader } from 'components/ContainerLoader/ContainerLoader.styled';
 import { fechServisSearchMovie } from 'API';
 
-export const Movies = () => {
+const Movies = () => {
   const [searchMovies, setSearchMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
@@ -69,3 +69,5 @@ export const Movies = () => {
     </main>
   );
 };
+
+export default Movies;
