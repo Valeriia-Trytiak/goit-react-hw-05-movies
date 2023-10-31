@@ -2,8 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 
 import { SharedHeader } from './SharedHeader/SharedHeader';
-// import { Cast } from 'components/Cast/Cast';
-// import { Reviews } from 'components/Reviews/Reviews';
 
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('../pages/Movies'));
