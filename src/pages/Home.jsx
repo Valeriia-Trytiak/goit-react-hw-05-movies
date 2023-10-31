@@ -11,12 +11,11 @@ export const Home = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    const controller = new AbortController();
     async function fechMovies() {
       try {
         setIsLoading(true);
         setError(false);
-        const movies = await fechServisMovies(controller);
+        const movies = await fechServisMovies();
         setTrendingMovies(movies.results);
       } catch (error) {
         setError(true);
@@ -25,9 +24,6 @@ export const Home = () => {
       }
     }
     fechMovies();
-    return () => {
-      controller.abort();
-    };
   }, []);
 
   return (
