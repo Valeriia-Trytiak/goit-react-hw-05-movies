@@ -35,4 +35,19 @@ h1, h2, h3, h4, p, li
   margin: 0;
 }
 
+h1 {
+  text-align: center;
+ margin-bottom: ${p => p.theme.spacing(5)};
+ margin-top: ${p => p.theme.spacing(5)};
+ position: sticky;
+ top: 0px;
+
+
+ @media only screen and (min-width: 1158px) {
+  margin-bottom: ${p => p.theme.spacing(9)};
+  }
+
+}
+
+
 `;

@@ -2,6 +2,11 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ColorRing } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import { Keyboard, Pagination, Navigation } from 'swiper/modules';
 
 import { fechServisMovieReviews } from 'API';
 import { ContainerLoader } from 'components/ContainerLoader/ContainerLoader.styled';
@@ -10,6 +15,7 @@ import {
   NoReviewsMessage,
   AuthorName,
   ReviewContent,
+  ContainerSlade,
 } from './Reviews.styled';
 
 const Reviews = () => {
@@ -45,12 +51,28 @@ const Reviews = () => {
     <ReviewsContainer>
       <ul>
         {movieReviews.length > 0 ? (
-          movieReviews.map(review => (
-            <li key={review.id}>
-              <AuthorName>{review.author}</AuthorName>
-              <ReviewContent>{review.content}</ReviewContent>
-            </li>
-          ))
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={30}
+            keyboard={{
+              enabled: true,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            navigation={true}
+            modules={[Keyboard, Pagination, Navigation]}
+            className="mySwiper"
+          >
+            {movieReviews.map(review => (
+              <SwiperSlide key={review.id}>
+                <ContainerSlade>
+                  <AuthorName>{review.author}</AuthorName>
+                  <ReviewContent>{review.content}</ReviewContent>
+                </ContainerSlade>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         ) : (
           <NoReviewsMessage>
             We don't have any reviews for this movie.

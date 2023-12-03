@@ -32,6 +32,18 @@ export const ActorName = styled.p`
 `;
 
 export const ActorCharacter = styled.p`
-  color: #777;
   margin-top: ${p => p.theme.spacing(1)};
+  margin-bottom: ${p => p.theme.spacing(4)};
+
+  @media only screen and (min-width: 768px) {
+    margin-bottom: ${p => p.theme.spacing(7)};
+  }
+`;
+
+export const ContainerSlade = styled.div`
+  flex-basis: calc(25% - 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 `;

@@ -11,6 +11,7 @@ import {
   AdditionalInfo,
   DescWrapper,
   BackLink,
+  Container,
 } from 'components/MovieDetails.styled';
 
 const MovieDetails = () => {
@@ -42,39 +43,41 @@ const MovieDetails = () => {
 
   return (
     <main>
-      <BackLink to={backLinkLocationRef.current}>
-        {' '}
-        <TbCircleArrowLeft />
-        To back
-      </BackLink>
-      <DetailsOneMovie data={moviesDetails} />
-      <DescWrapper>
-        <AdditionalInfo>Additional informacion</AdditionalInfo>
-        <ul>
-          <InfoListItem>
-            <BackLink to="cast">Cast</BackLink>
-          </InfoListItem>
-          <InfoListItem>
-            <BackLink to="reviews">Reviews</BackLink>
-          </InfoListItem>
-        </ul>
-      </DescWrapper>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Outlet />
-      </Suspense>
-      {isLoading && (
-        <ContainerLoader>
-          <ColorRing
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="blocks-loading"
-            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-          />
-        </ContainerLoader>
-      )}
-      {error && <span>Whoops... Error! Please, reload this page!</span>}
-      <Toaster position="top-right" />
+      <Container>
+        <BackLink to={backLinkLocationRef.current}>
+          {' '}
+          <TbCircleArrowLeft />
+          To back
+        </BackLink>
+        <DetailsOneMovie data={moviesDetails} />
+        <DescWrapper>
+          <AdditionalInfo>Additional informacion</AdditionalInfo>
+          <ul>
+            <InfoListItem>
+              <BackLink to="cast">Cast</BackLink>
+            </InfoListItem>
+            <InfoListItem>
+              <BackLink to="reviews">Reviews</BackLink>
+            </InfoListItem>
+          </ul>
+        </DescWrapper>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+        {isLoading && (
+          <ContainerLoader>
+            <ColorRing
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="blocks-loading"
+              colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+            />
+          </ContainerLoader>
+        )}
+        {error && <span>Whoops... Error! Please, reload this page!</span>}
+        <Toaster position="top-right" />
+      </Container>
     </main>
   );
 };

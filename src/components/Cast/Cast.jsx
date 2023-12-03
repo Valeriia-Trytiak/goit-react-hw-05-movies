@@ -2,6 +2,11 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { ColorRing } from 'react-loader-spinner';
 import toast, { Toaster } from 'react-hot-toast';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/free-mode';
+import { Pagination, FreeMode } from 'swiper/modules';
 
 import { fechServisMovieCredits } from 'API';
 import { ContainerLoader } from 'components/ContainerLoader/ContainerLoader.styled';
@@ -10,6 +15,7 @@ import {
   CastContainer,
   ActorName,
   ActorCharacter,
+  ContainerSlade,
 } from './Cast.styled';
 
 const Cast = () => {
@@ -43,21 +49,34 @@ const Cast = () => {
   return (
     <CastContainer>
       <ul>
-        {movieCredits.map(actor => (
-          <li key={actor.cast_id}>
-            <ActorImage
-              src={
-                actor.profile_path
-                  ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
-                  : defaultImg
-              }
-              alt={actor.name}
-              width={150}
-            />
-            <ActorName>{actor.name}</ActorName>
-            <ActorCharacter>Character: {actor.character}</ActorCharacter>
-          </li>
-        ))}
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={30}
+          freeMode={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode, Pagination]}
+          className="mySwiper"
+        >
+          {movieCredits.map(actor => (
+            <SwiperSlide key={actor.cast_id}>
+              <ContainerSlade>
+                <ActorImage
+                  src={
+                    actor.profile_path
+                      ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+                      : defaultImg
+                  }
+                  alt={actor.name}
+                  width={150}
+                />
+                <ActorName>{actor.name}</ActorName>
+                <ActorCharacter>Character: {actor.character}</ActorCharacter>
+              </ContainerSlade>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </ul>
       {isLoading && (
         <ContainerLoader>

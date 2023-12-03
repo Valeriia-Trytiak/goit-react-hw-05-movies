@@ -15,8 +15,9 @@ export const ContainerSearchbar = styled.div`
   padding-left: ${p => p.theme.spacing(6)};
   padding-top: ${p => p.theme.spacing(3)};
   padding-bottom: ${p => p.theme.spacing(3)};
+  margin-bottom: ${p => p.theme.spacing(5)};
   color: ${p => p.theme.colors.white};
-  background-color: ${p => p.theme.colors.accent};
+  background-color: transparent;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;

@@ -1,9 +1,11 @@
 import { useLocation } from 'react-router-dom';
 import {
+  ListThumb,
   MovieItem,
   MovieLink,
   MoviePoster,
   MoviesListContainer,
+  OverlayText,
 } from './MoviesList.styled';
 
 export const MoviesList = ({ movies }) => {
@@ -17,16 +19,18 @@ export const MoviesList = ({ movies }) => {
       {movies.map(movie => (
         <MovieItem key={movie.id}>
           <MovieLink to={`/movies/${movie.id}`} state={{ from: location }}>
-            <MoviePoster
-              src={
-                movie.poster_path
-                  ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                  : defaultImg
-              }
-              width={100}
-              alt="poster"
-            />
-            <h2>{movie.title}</h2>
+            <ListThumb>
+              <MoviePoster
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                    : defaultImg
+                }
+                width={100}
+                alt="poster"
+              />
+              <OverlayText>{movie.title}</OverlayText>
+            </ListThumb>
           </MovieLink>
         </MovieItem>
       ))}

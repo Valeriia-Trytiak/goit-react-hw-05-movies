@@ -8,13 +8,15 @@ import {
   GenresTitle,
   GenresList,
   MovieInfo,
+  RatingContainer,
 } from './DetailsOneMovie.styled';
+import StarRatings from 'react-star-ratings';
 
 export const DetailsOneMovie = ({ data }) => {
   const { title, overview, vote_average, poster_path, release_date, genres } =
     data;
   const releaseYear = release_date ? release_date.slice(0, 4) : null;
-  const userScore = Math.ceil(vote_average * 10);
+  const userScore = vote_average ? Number(vote_average.toFixed(1)) : 0;
   const defaultImg =
     'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
@@ -33,7 +35,16 @@ export const DetailsOneMovie = ({ data }) => {
         <MovieTitle>
           {title} {releaseYear && `(${releaseYear})`}
         </MovieTitle>
-        <UserScore>User score: {userScore}%</UserScore>
+        <RatingContainer>
+          <StarRatings
+            rating={userScore}
+            numberOfStars={10}
+            starRatedColor="#ffc414"
+            starDimension="22px"
+            starSpacing="3px"
+          />
+          <UserScore>{userScore}</UserScore>
+        </RatingContainer>
         <OverviewTitle>Overview</OverviewTitle>
         <OverviewText>{overview}</OverviewText>
         <GenresTitle>Genres</GenresTitle>
